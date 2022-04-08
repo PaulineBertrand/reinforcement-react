@@ -1,23 +1,50 @@
-import logo from './logo.svg';
 import './App.css';
+import TeamSports from './components/TeamSports'
+import Form from './components/Form'
+import OtherForm from './components/OtherForm'
+
+import { useState } from 'react';
+
 
 function App() {
+  const allSports = [
+    {
+      name: "Ice Hockey",
+      type: "icy",
+      equipment: ["shoulder pads, ", "puck, ", "stick"],
+      isCollective: true,
+      interesting: 90
+    },
+    {
+      name: "Escrime",
+      type: "duel",
+      equipment: ["sword, ", "protective gear, ", "weird masks"],
+      isCollective: false,
+      interesting: 70
+    },
+    {
+      name: "Soccer",
+      type: "field",
+      equipment: ["football"],
+      isCollective: true,
+      interesting: 35
+    },
+    {
+      name: "Judo",
+      type: "duel",
+      equipment: ["kimono, ", "tatami"],
+      isCollective: false,
+      interesting: 75
+    }
+  ]
+  const [currentSports, setCurrentSports] = useState(allSports)
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TeamSports sports={allSports} currentSports={currentSports} setCurrentSports={setCurrentSports}/>
+      <Form currentSports={currentSports} setCurrentSports={setCurrentSports} />
+      <OtherForm currentSports={currentSports} setCurrentSports={setCurrentSports} />
+      <Beer />
     </div>
   );
 }
